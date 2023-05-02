@@ -1,0 +1,35 @@
+
+ <div class="sign-in">
+  <button (click)="openForm()">Sign-in</button>
+ </div>
+
+
+ <tr>
+
+<th>email</th>
+<th>Password</th>
+ </tr>
+
+
+ <dialog id="loginDialog">
+<form [formGroup]="loginForm" (ngSubmit)="submit()">
+<div class="row">
+
+  <input formControlName="email" placeholder="email" name="email">
+<span *ngIf="loginForm.controls['email']?.errors" class="required">*</span>
+
+<input formControlName="password" placeholder="passsword" name="password">
+<span *ngIf="loginForm.controls['password']?.errors" class="required">*</span>
+<p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+
+</div>
+
+
+
+<button>Login</button>
+<button (click)="closeForm()">Cancel</button>
+
+
+</form>
+
+ </dialog>
