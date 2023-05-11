@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Product } from "../shared/product.model";
 import { ProductService } from "../shared/product.service";
 
-
+import * as _ from 'lodash';
 @Component({
     selector: 'product-app',
     styleUrls: ['./product.component.css'],
@@ -29,7 +29,8 @@ export class ProductComponent implements OnInit {
     rows: number[] = [];
     getProduct(): void {
         this.productService.getAllProduct().subscribe(products => {
-            this.products = products;
+            this.products = _.sortBy(products, 'name');
+            
             if (this.products && this.products.length > 0) {
                 this.rows = [];
                 let value = -1;

@@ -7,20 +7,18 @@
 
 <div id="loginDialog">
   <form [formGroup]="loginForm" (ngSubmit)="validateForm()">
-    <div class="row">
+    <div>
 
-      <input formControlName="email" placeholder="email" name="email">
-      <span *ngIf="loginForm.controls['email']?.errors" class="required">*</span>
-
+      <input formControlName="email" placeholder="email" name="email"> <br>
+  
       <input formControlName="password" placeholder="passsword" name="password">
-      <span *ngIf="loginForm.controls['password']?.errors" class="required">*</span>
-      
+        
     </div>
 
 
 
-    <button>Login</button>
-    <button >Cancel</button>
+    <button class="login">Login</button><br>
+    <a href  = "customer" class="register">Register</a>
 
 
   </form>
