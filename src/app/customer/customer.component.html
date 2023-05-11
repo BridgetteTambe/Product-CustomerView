@@ -1,0 +1,76 @@
+<div class="main">
+
+<h1>CUSTOMERS ACCOUNT</h1>
+
+<div class="customerRegister-button">
+     <button (click)="openCustomerForm()">Register</button>
+</div>
+
+<br>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>LastName</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Date Of Birth</th>
+        <th>Password</th>
+        <th>Actions</th>
+
+    </tr>
+
+    <tr *ngFor="let customer of customers">
+
+        <td>{{customer.id}}</td>
+        <td>{{customer.firstName}}</td>
+        <td>{{customer.lastName}}</td>
+        <td>{{customer.email}}</td>
+        <td>{{customer.phoneNumber}}</td>
+        <td>customer.dateOfBirth</td>
+        <td>{{customer.password}}</td>
+            <button (click)="editCustomerForm(customer)" class="customerEdit">Edit</button>
+            <button (click)="deleteCustomerById(customer.id)" class="customer-delete">Delete</button>
+    </tr>
+</table>
+
+<dialog id="customerDialog">
+
+    <form [formGroup]="customerForm" (ngSubmit)="submit()">
+        
+        <p class="fill-details">Fill in all necessary information.</p>
+
+        <div class="row">
+
+            <input formControlName="firstName" placeholder="First Name" name="firstName">
+            <span *ngIf="customerForm.controls['firstName']?.errors" class="required">*</span>
+
+
+            <input formControlName="lastName" placeholder="Last Name" name="lastName">
+            <span *ngIf="customerForm.controls['lastName']?.errors" class="required">*</span>
+
+            <input formControlName="email" placeholder="Email" name="email">
+            <span *ngIf="customerForm.controls['email']?.errors" class="required">*</span>
+        </div>
+        <div class="row">
+
+            <input formControlName="phoneNumber" placeholder="Phone Number" name="phoneNumber">
+            <span *ngIf="customerForm.controls['phoneNumber']?.errors" class="required">*</span>
+
+            <input formControlName="dateOfBirth" placeholder="Date Of Birth" name="dateOfBirth">
+            <span *ngIf="customerForm.controls['dateOfBirth']?.errors" class="required">*</span>
+
+            <input formControlName="password" placeholder="Password" name="password">
+            <span *ngIf="customerForm.controls['password']?.errors" class="required">*</span>
+        </div>
+
+        <button (click)="submit()" class="submit">Submit</button>
+        <button (click)="closeCustomerFrom()" class="closeForm">Cancel</button>
+        
+        <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+
+    </form>
+
+</dialog>
+</div>

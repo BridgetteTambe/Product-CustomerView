@@ -1,0 +1,81 @@
+.main{
+    /* background-image: url("../../assets/pexels-min-an-1087727.jpg");
+    filter: blur(8px); */
+  /* -webkit-filter: blur(8px); */
+}
+
+#customerDialog {
+    margin: auto;
+    background-color: grey;
+
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.submit,.closeForm {
+    margin: 8px;
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 6px;
+    font-size: 14px;
+}
+
+.closeForm{
+    background-color: red;
+    border: none;
+
+}
+
+.closeForm:hover,
+.closeForm:active{
+    background-color: #fa5252;
+}
+
+.submit{
+    background-color: #2b8a3e;
+    border: none;
+}
+
+.submit:hover,
+.submit:active{
+    background-color: #37b24d;
+}
+
+
+.customerRegister-button {
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 80%;
+    width: 100%;
+    margin-top: 70px;
+}
+
+
+.customerEdit,
+.customer-delete {
+    font-weight: bold;
+    text-align: center;
+    width: auto;
+    margin: 8px;
+}
+
+.customer-delete {
+
+    border: none;
+}
+
+.fill-details,p{
+    margin-left: 12px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.fill-details{
+    color: #fa5252;
+
+}

@@ -8,11 +8,13 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CustomerComponent } from './customer/customer.component';
 import {CustomerService} from './shared/customer.service';
+import { ProductComponent } from './product/product.component';
+import { ProductService } from './shared/product.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,CustomerComponent
+    LoginComponent,CustomerComponent,ProductComponent
     ],
   imports: [
     BrowserModule,
@@ -21,7 +23,7 @@ import {CustomerService} from './shared/customer.service';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [CustomerService],
+  providers: [CustomerService, ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

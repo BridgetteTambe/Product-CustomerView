@@ -9,60 +9,59 @@ import { Login } from "../shared/login.model";
     styleUrls: ['./login.component.css'],
     templateUrl: './login.component.html'
 })
-export class LoginComponent implements OnInit{
-    
+export class LoginComponent implements OnInit {
+
 
     login: Login[] = [];
     loginForm!: FormGroup;
-   
+    message!: string;
 
-    ngOnInit(): void {
-        
+
+    constructor(private customerService: CustomerService, private formBuilder: FormBuilder) {
+        this.buildForm();
     }
 
-constructor(private customerService: CustomerService,private formBuilder: FormBuilder){
-    this.buildForm();
-}
 
-buildForm(){
+    ngOnInit(): void {
 
-    this.loginForm = this.formBuilder.group({
+    }
 
-        email:[null,Validators.required],
-        password:[null,Validators.required],
-    })
-}
+    buildForm() {
 
-openForm(): void {
-    const dialog: any = document.getElementById("favDialog");
-    dialog.showModal();
-}
-closeForm(): void {
-    const dialog: any = document.getElementById("favDialog");
-    dialog.close();
-}
+        this.loginForm = this.formBuilder.group({
+            email: [null, Validators.required],
+            password: [null, Validators.required],
+        })
+    }
 
-validateForm():void{
 
-    this.loginForm.controls['email'].markAsTouched();
-        this.loginForm.controls['password'].markAsTouched();
-}
+    validateForm(): void {
+        if (!this.loginForm.valid) {
+            this.loginForm.controls['email'].markAsTouched();
+            this.loginForm.controls['password'].markAsTouched();
+        } else {
+            this.submit();
+        }
+    }
 
-submit():void{
-console.log(this.loginForm);
-this.validateForm();
+    submit(): void {
+        console.log(this.loginForm);
+        let login: Login = this.loginForm.value
+        console.log('login', login)
 
-if(this.loginForm.valid){
-    let login: Login = this.loginForm.value
-    console.log('login',login)
+        this.customerService.loginCustomer(login.email, login.password).subscribe(loginCustomer => {
 
-    this.customerService.loginCustomer("email", "password").subscribe(loginCustomer => {
-        console.log('saved customer ', loginCustomer);
-        this.closeForm(); //THis will close  Form 
-    });
-
-}
-}
+           
+            if (loginCustomer && !loginCustomer?.message) {
+                console.log('customer details ', loginCustomer);
+            } else {
+                console.log('error message', loginCustomer.message);
+                this.message = loginCustomer.message;
+            }
+        }, error => {
+            console.log('Error: ', error)
+        });
+    }
 
 }
 

@@ -1,10 +1,11 @@
 .main {
     margin: -10px;
+    
 }
 .space{
     line-height: 200px;
     display: block;
-
+    
 }
 
 .online-shop {
@@ -17,4 +18,14 @@
     position: fixed;
     overflow: hidden;
     min-width: 100%;
+}
+
+
+h2{
+
+font-weight: bold;
+font-family: sans-serif;
+background-color: #087f5b;
+
+
 }

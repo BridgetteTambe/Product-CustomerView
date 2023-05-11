@@ -1,35 +1,28 @@
+<h3>LOGIN</h3>
 
- <div class="sign-in">
+<p class="login-details">Fill in the details before you login.</p>
+<!-- <div class="sign-in">
   <button (click)="openForm()">Sign-in</button>
- </div>
+</div> -->
+
+<div id="loginDialog">
+  <form [formGroup]="loginForm" (ngSubmit)="validateForm()">
+    <div class="row">
+
+      <input formControlName="email" placeholder="email" name="email">
+      <span *ngIf="loginForm.controls['email']?.errors" class="required">*</span>
+
+      <input formControlName="password" placeholder="passsword" name="password">
+      <span *ngIf="loginForm.controls['password']?.errors" class="required">*</span>
+      
+    </div>
 
 
- <tr>
 
-<th>email</th>
-<th>Password</th>
- </tr>
+    <button>Login</button>
+    <button >Cancel</button>
 
 
- <dialog id="loginDialog">
-<form [formGroup]="loginForm" (ngSubmit)="submit()">
-<div class="row">
-
-  <input formControlName="email" placeholder="email" name="email">
-<span *ngIf="loginForm.controls['email']?.errors" class="required">*</span>
-
-<input formControlName="password" placeholder="passsword" name="password">
-<span *ngIf="loginForm.controls['password']?.errors" class="required">*</span>
-<p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+  </form>
 
 </div>
-
-
-
-<button>Login</button>
-<button (click)="closeForm()">Cancel</button>
-
-
-</form>
-
- </dialog>

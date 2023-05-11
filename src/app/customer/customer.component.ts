@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Customer } from "../shared/customer.model";
 import { CustomerService } from "../shared/customer.service";
 
@@ -13,118 +13,120 @@ import { CustomerService } from "../shared/customer.service";
 export class CustomerComponent implements OnInit {
 
     customers: Customer[] = [];
-
-    customer: Customer = new Customer();
+    customer: any = {};
+   
+    customerForm!: FormGroup;
     id: any;
 
 
+
+
+
+    constructor(private customerService: CustomerService, private formBuilder: FormBuilder) {
+       
+    }
+
     ngOnInit(): void {
-
+        this.buildForm();
+        this.getAllCustomers();
+        console.log(this.customerForm)
     }
 
-
-    firstName: string = '';
-    lastName: string = '';
-    email: string = '';
-    phoneNumber: string = '';
-    dateOfBirth: string = '';
-    position: string = '';
-    password: string = '';
-
-    
-    constructor(public customerService: CustomerService){
-        console.log("Constructor started")
-    }
-
-    getAllCustomers(): void{
-        this.customerService.getAllCustomers().subscribe(customers=>{
-            console.log("Customer: ", customers)
+    buildForm(): void {
+        this.customerForm = this.formBuilder.group({
+            id: [null,Validators.required],
+            firstName: [null,Validators.required],
+            lastName: [null,Validators.required],
+            email: [null,Validators.required],
+            phoneNumber: [null,Validators.required],
+            dateOfBirth: [null,Validators.required],
+            password: [null,Validators.required],
         })
     }
 
-    submit():void{
-        console.log(this.firstName);
-        console.log(this.lastName);
-        console.log(this.email);
-        console.log(this.phoneNumber);
-        console.log(this.dateOfBirth);
-        console.log(this.position);
-        console.log(this.password);
+    getAllCustomers(): void {
+        this.customerService.getAllCustomers().subscribe(customer => {
+            this.customers = customer
+            console.log("Customer: ", customer)
+        })
+    }
 
-        let customer: Customer = new Customer();
+    submit(): void {
+        let customer = this.customerForm?.value;
+        console.log("Customer:", customer);
+        if (this.id == null) {
+            this.customerService.createCustomer(customer).subscribe(customer => {
+                console.log("Customer:", customer);
+                
+                this.getAllCustomers();
+               this.resetCustomerForm()
+               this.closeCustomerFrom();
+                
+            })
+        } else {
+            customer.id = this.id;
+            this.customerService.updateCustomer(customer).subscribe(customer => {
+                this.getAllCustomers();
+                this.customerForm.reset();
+                this.closeCustomerFrom();
+                console.log("Customer:", customer);
+            })
 
-       customer.firstName = this.firstName;
-       customer.lastName = this.lastName;
-       customer.email = this.email;
-       customer.phoneNumber= this.phoneNumber;
-       customer.dateOfBirth = this.dateOfBirth;
-       customer.position = this.password;
+        }
 
+    }
 
-       if(this.id==null){
-        this.customerService.createCustomer(customer).subscribe(customer=>{
+    loginCustomer(email: string, password: string): void {
+        this.customerService.loginCustomer(email, password).subscribe(customerLogin => {
+            console.log("Customer login:", customerLogin)
+        })
+    }
+
+    deleteCustomerById(id: any): void {
+        this.customerService.deleteCustomerById(id).subscribe(customer => {
+            // this.customers=customer;
             console.log("Customer:", customer);
-        })
-
-       }else{
-        customer.id = this.id;
-        this.customerService.updateCustomer(customer).subscribe(customer=>{
-            console.log("Customer:", customer);   
-        })
-
-       }
-
-    }
-
-    deleteCustomerById(id:any):void{
-        this.customerService.deleteCustomerById(id).subscribe(customer=>{
-            console.log("Customer:", customer);
 
         })
     }
 
-    deleteAllCustomer():void{
-        this.customerService.deleteAllCustomers().subscribe(customer=>{
+    deleteAllCustomer(): void {
+        this.customerService.deleteAllCustomers().subscribe(customer => {
+            // this.customers = customer;
             console.log("Delete Customer:", customer)
         })
     }
 
-    getCustomerById(id:any):void{
-        this.customerService.getCustomerbyId(id).subscribe(()=>{
-console.log("Customer deleted:",id);
-        })
+    // getCustomerById(id: any): void {
+    //     this.customerService.getCustomerbyId(id).subscribe(() => {
+           
+    //         console.log("Get customer by id:", id);
+    //     })
+    // }
+
+    openCustomerForm(): void {
+        const dialog: any = document.getElementById("customerDialog");
+        dialog.showModal();
     }
 
-    openCustomerForm():void{
-const dialog:any = document.getElementById("customerDialog");
-dialog.showModal();
-    }
-
-    closeCustomerFrom():void{
-        const dialog: any =document.getElementById("customerDialog");
+    closeCustomerFrom(): void {
+        const dialog: any = document.getElementById("customerDialog");
         dialog.close();
 
     }
 
-    editCustomerForm(customer:Customer):void{
-        this.id =customer.id;
-        this.firstName = customer.firstName;
-        this.lastName = customer.lastName;
-        this.email= customer.email;
-        this.dateOfBirth = customer.dateOfBirth;
-        this.phoneNumber= customer.phoneNumber
-       this.closeCustomerFrom();
+    editCustomerForm(customer: Customer): void {
+        this.id = customer.id;
+        this.customerForm.patchValue(customer);
+        console.log("customerForm:", this.customerForm.value);
+        this.openCustomerForm();
     }
 
-    resetCustomerForm():void{
-        this.firstName='';
-        this.lastName='';
-        this.email = '';
-        this.phoneNumber ='';
-        this.dateOfBirth ='';
-       
+    resetCustomerForm(): void {
+        this.customerForm.reset();
+
     }
 
-    
+
 
 }

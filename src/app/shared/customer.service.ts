@@ -17,7 +17,7 @@ export class CustomerService {
     }
 
     updateCustomer(customer: Customer): Observable<Customer> {
-        return this.http.put<Customer>(this.baseUrl, Customer)
+        return this.http.put<Customer>(this.baseUrl, customer)
     }
 
     getCustomerbyId(id: number): Observable<any> {
@@ -37,8 +37,8 @@ export class CustomerService {
         return this.http.delete<Customer[]>(`${this.baseUrl}`)
     }
 
-    loginCustomer(email: string, password: string): Observable<Customer> {
-        return this.http.get<Customer>(`${this.baseUrl}/login/${email}/${password}`)
+    loginCustomer(email: string, password: string): Observable<any> {
+        return this.http.get<any>(`${this.baseUrl}/login/${email}/${password}`)
     }
 
 }
