@@ -13,6 +13,7 @@
         <th>ID</th>
         <th>First Name</th>
         <th>LastName</th>
+        <th>Id Number</th>
         <th>Email</th>
         <th>Phone Number</th>
         <th>Date Of Birth</th>
@@ -26,6 +27,7 @@
         <td>{{customer.id}}</td>
         <td>{{customer.firstName}}</td>
         <td>{{customer.lastName}}</td>
+        <td>{{customer.idNumber}}</td>
         <td>{{customer.email}}</td>
         <td>{{customer.phoneNumber}}</td>
         <td>customer.dateOfBirth</td>
@@ -49,6 +51,9 @@
 
             <input formControlName="lastName" placeholder="Last Name" name="lastName">
             <span *ngIf="customerForm.controls['lastName']?.errors" class="required">*</span>
+
+            <input formControlName="idNumber" placeholder="Id Number" name="idNumber">
+            <span *ngIf="customerForm.controls['idNumber']?.errors" class="required">*</span>
 
             <input formControlName="email" placeholder="Email" name="email">
             <span *ngIf="customerForm.controls['email']?.errors" class="required">*</span>
