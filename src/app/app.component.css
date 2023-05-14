@@ -1,11 +1,12 @@
 .main {
     margin: -10px;
-    
+
 }
-.space{
+
+.space {
     line-height: 200px;
     display: block;
-    
+
 }
 
 .online-shop {
@@ -21,11 +22,32 @@
 }
 
 
-h2{
+h2 {
 
-font-weight: bold;
-font-family: sans-serif;
-background-color: #087f5b;
+    font-weight: bold;
+    font-family: sans-serif;
+    background-color: #087f5b;
 
 
+}
+
+.nav {
+    margin-top: 70px;
+    width: 50px;
+
+    /* float: right; */
+    /* color: #f2f2f2; */
+    text-align: center;
+    /* padding: 14px 16px; */
+    text-decoration: none;
+    font-size: 18px;
+    color: red;
+    position: fixed;
+
+}
+
+
+a svg:hover {
+    background-color: #087f5b;
+    cursor: pointer;
 }

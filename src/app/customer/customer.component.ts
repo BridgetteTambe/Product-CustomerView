@@ -37,6 +37,7 @@ export class CustomerComponent implements OnInit {
             id: [null,Validators.required],
             firstName: [null,Validators.required],
             lastName: [null,Validators.required],
+            idNumber: [null,Validators.required],
             email: [null,Validators.required],
             phoneNumber: [null,Validators.required],
             dateOfBirth: [null,Validators.required],

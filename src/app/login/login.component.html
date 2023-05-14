@@ -4,11 +4,10 @@
 <!-- <div class="sign-in">
   <button (click)="openForm()">Sign-in</button>
 </div> -->
-
+<div *ngIf="message">{{message}}</div>
 <div id="loginDialog">
   <form [formGroup]="loginForm" (ngSubmit)="validateForm()">
     <div>
-
       <input formControlName="email" placeholder="email" name="email"> <br>
   
       <input formControlName="password" placeholder="passsword" name="password">

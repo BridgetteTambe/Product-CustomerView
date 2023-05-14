@@ -50,13 +50,13 @@ export class LoginComponent implements OnInit {
         console.log('login', login)
 
         this.customerService.loginCustomer(login.email, login.password).subscribe(loginCustomer => {
-
-           
-            if (loginCustomer && !loginCustomer?.message) {
-                console.log('customer details ', loginCustomer);
-            } else {
+            if (loginCustomer && loginCustomer?.message) {
                 console.log('error message', loginCustomer.message);
                 this.message = loginCustomer.message;
+            } else {
+                this.message = '';
+                sessionStorage.setItem("CustomerId", loginCustomer.id)                
+                localStorage.setItem("CustomerId", loginCustomer.id)  
             }
         }, error => {
             console.log('Error: ', error)

@@ -10,11 +10,12 @@ import { CustomerComponent } from './customer/customer.component';
 import {CustomerService} from './shared/customer.service';
 import { ProductComponent } from './product/product.component';
 import { ProductService } from './shared/product.service';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,CustomerComponent,ProductComponent
+    LoginComponent,CustomerComponent,ProductComponent, ProfileComponent
     ],
   imports: [
     BrowserModule,
