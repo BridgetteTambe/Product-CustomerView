@@ -26,3 +26,7 @@ h3{
     padding: 10px;
     width: 18%;
 }
+
+.inLoginForm{
+    color: red;
+}

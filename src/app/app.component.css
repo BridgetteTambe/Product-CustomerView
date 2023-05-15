@@ -34,11 +34,7 @@ h2 {
 .nav {
     margin-top: 70px;
     width: 50px;
-
-    /* float: right; */
-    /* color: #f2f2f2; */
     text-align: center;
-    /* padding: 14px 16px; */
     text-decoration: none;
     font-size: 18px;
     color: red;
@@ -46,8 +42,3 @@ h2 {
 
 }
 
-
-a svg:hover {
-    background-color: #087f5b;
-    cursor: pointer;
-}

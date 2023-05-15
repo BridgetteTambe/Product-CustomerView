@@ -4,7 +4,7 @@
 <!-- <div class="sign-in">
   <button (click)="openForm()">Sign-in</button>
 </div> -->
-<div *ngIf="message">{{message}}</div>
+<div *ngIf="message" class="inLoginForm">{{message}}</div>
 <div id="loginDialog">
   <form [formGroup]="loginForm" (ngSubmit)="validateForm()">
     <div>

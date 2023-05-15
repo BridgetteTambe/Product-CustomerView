@@ -1,3 +1,5 @@
+import { Cart } from "./cart.model";
+
 export interface Customer {
     id: any;
     idNumber:string;
@@ -8,6 +10,8 @@ export interface Customer {
     phoneNumber: string;
     dateOfBirth: string;
     message: string;
+    cart: Cart,
+    orders:[]
 }
 
 
