@@ -5,7 +5,7 @@ import { CustomerService } from "../shared/customer.service";
 
 @Component({
     selector: 'customer-app',
-    templateUrl: '/customer.component.html',
+    templateUrl: './customer.component.html',
     styleUrls: ['./customer.component.css']
 
 })
