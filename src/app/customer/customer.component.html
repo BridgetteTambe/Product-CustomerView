@@ -8,7 +8,44 @@
 
 <br>
 
-<table>
+<p-table [value]="customers" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>LastName</th>
+            <th>Id Number</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Date Of Birth</th>
+            <th>Password</th>
+            <th>Actions</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-customer>
+        <tr>
+            <td>{{customer.id}}</td>
+        <td>{{customer.firstName}}</td>
+        <td>{{customer.lastName}}</td>
+        <td>{{customer.idNumber}}</td>
+        <td>{{customer.email}}</td>
+        <td>{{customer.phoneNumber}}</td>
+        <td>customer.dateOfBirth</td>
+        <td>{{customer.password}}</td>
+
+        <button (click)="editCustomerForm(customer)" class="customerEdit">Edit</button>
+    <button (click)="deleteCustomerById(customer.id)" class="customer-delete">Delete</button>
+        </tr>
+
+        
+    </ng-template>
+
+    
+</p-table> 
+
+
+
+<!-- <table>
     <tr>
         <th>ID</th>
         <th>First Name</th>
@@ -35,7 +72,7 @@
             <button (click)="editCustomerForm(customer)" class="customerEdit">Edit</button>
             <button (click)="deleteCustomerById(customer.id)" class="customer-delete">Delete</button>
     </tr>
-</table>
+</table> -->
 
 <dialog id="customerDialog">
 
@@ -79,3 +116,9 @@
 
 </dialog>
 </div>
+
+
+
+<!-- table -->
+
+

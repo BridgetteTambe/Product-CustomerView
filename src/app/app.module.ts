@@ -12,6 +12,7 @@ import { ProductComponent } from './product/product.component';
 import { ProductService } from './shared/product.service';
 import { ProfileComponent } from './profile/profile.component';
 import { CartComponent } from './cart/cart.component';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { CartComponent } from './cart/cart.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    TableModule
   ],
   providers: [CustomerService, ProductService],
   bootstrap: [AppComponent],
