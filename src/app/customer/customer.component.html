@@ -2,13 +2,17 @@
 
 <h1>CUSTOMERS ACCOUNT</h1>
 
+<h2>If you have not yet register please click the register button below 
+    and if you have already register please login your information to proceed. </h2>
+
+
 <div class="customerRegister-button">
      <button (click)="openCustomerForm()">Register</button>
 </div>
 
 <br>
 
-<p-table [value]="customers" [tableStyle]="{ 'min-width': '50rem' }">
+<!-- <p-table [value]="customers" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">
         <tr>
             <th>ID</th>
@@ -41,7 +45,7 @@
     </ng-template>
 
     
-</p-table> 
+</p-table>  -->
 
 
 
@@ -103,8 +107,10 @@
             <input formControlName="dateOfBirth" placeholder="Date Of Birth" name="dateOfBirth">
             <span *ngIf="customerForm.controls['dateOfBirth']?.errors" class="required">*</span>
 
-            <input formControlName="password" placeholder="Password" name="password">
-            <span *ngIf="customerForm.controls['password']?.errors" class="required">*</span>
+            <!-- <input formControlName="password" placeholder="Password" name="password"> -->
+            <p-password formControlName="password" [toggleMask]="true"></p-password>
+
+            <!-- <span *ngIf="customerForm.controls['password']?.errors" class="required">*</span> -->
         </div>
 
         <button (click)="submit()" class="submit">Submit</button>
@@ -120,5 +126,3 @@
 
 
 <!-- table -->
-
-

@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Customer } from "../shared/customer.model";
 import { CustomerService } from "../shared/customer.service";
+import { Product } from "../shared/product.model";
+import { ProductService } from "../shared/product.service";
 
 @Component({
     selector: 'customer-app',
@@ -14,43 +16,43 @@ export class CustomerComponent implements OnInit {
 
     customers: Customer[] = [];
     customer: any = {};
-   
+
+    products: Product[] = [];
+
     customerForm!: FormGroup;
     id: any;
+    password: any;
 
 
 
 
 
-    constructor(private customerService: CustomerService, private formBuilder: FormBuilder) {
-       
+
+    constructor(private customerService: CustomerService, private formBuilder:
+        FormBuilder, productService: ProductService) {
+
     }
 
     ngOnInit(): void {
         this.buildForm();
-        this.getAllCustomers();
-        console.log(this.customerForm)
+ 
     }
+
+
 
     buildForm(): void {
         this.customerForm = this.formBuilder.group({
-            id: [null,Validators.required],
-            firstName: [null,Validators.required],
-            lastName: [null,Validators.required],
-            idNumber: [null,Validators.required],
-            email: [null,Validators.required],
-            phoneNumber: [null,Validators.required],
-            dateOfBirth: [null,Validators.required],
-            password: [null,Validators.required],
+            id: [null, Validators.required],
+            firstName: [null, Validators.required],
+            lastName: [null, Validators.required],
+            idNumber: [null, Validators.required],
+            email: [null, Validators.required],
+            phoneNumber: [null, Validators.required],
+            dateOfBirth: [null, Validators.required],
+            password: [null, Validators.required],
         })
     }
 
-    getAllCustomers(): void {
-        this.customerService.getAllCustomers().subscribe(customer => {
-            this.customers = customer
-            console.log("Customer: ", customer)
-        })
-    }
 
     submit(): void {
         let customer = this.customerForm?.value;
@@ -58,16 +60,13 @@ export class CustomerComponent implements OnInit {
         if (this.id == null) {
             this.customerService.createCustomer(customer).subscribe(customer => {
                 console.log("Customer:", customer);
-                
-                this.getAllCustomers();
-               this.resetCustomerForm()
-               this.closeCustomerFrom();
-                
+                this.resetCustomerForm()
+                this.closeCustomerFrom();
+
             })
         } else {
             customer.id = this.id;
             this.customerService.updateCustomer(customer).subscribe(customer => {
-                this.getAllCustomers();
                 this.customerForm.reset();
                 this.closeCustomerFrom();
                 console.log("Customer:", customer);
@@ -100,7 +99,7 @@ export class CustomerComponent implements OnInit {
 
     // getCustomerById(id: any): void {
     //     this.customerService.getCustomerbyId(id).subscribe(() => {
-           
+
     //         console.log("Get customer by id:", id);
     //     })
     // }
@@ -125,7 +124,6 @@ export class CustomerComponent implements OnInit {
 
     resetCustomerForm(): void {
         this.customerForm.reset();
-
     }
 
 

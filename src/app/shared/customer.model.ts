@@ -1,3 +1,4 @@
+import { Address } from "./address.model";
 import { Cart } from "./cart.model";
 
 export interface Customer {
@@ -11,6 +12,7 @@ export interface Customer {
     dateOfBirth: string;
     message: string;
     cart: Cart,
+    address:Address,
     orders:[]
 }
 

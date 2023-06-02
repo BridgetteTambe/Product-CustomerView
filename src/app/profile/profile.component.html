@@ -1,0 +1,50 @@
+
+<!-- <h5>My Profile</h5> -->
+
+<div class="container">
+
+<div class="section">
+    <img src="/assets/product-pics/flower.jpg" alt="Denim Jeans" class="img">
+
+    <h6>{{profileForm?.value?.firstName}} {{profileForm?.value?.lastName}}</h6>
+  <p class="title">software Developer</p>
+  <p class="education">Pine Valley Institude</p>
+  <div style="margin: 24px 0;">
+    <p><button>Contact</button></p>
+  </div>
+  
+
+ 
+
+</div>
+
+<div class="description">
+
+  <form [formGroup]="profileForm" (ngSubmit)="submit()">
+    
+    <input formControlName="firstName" placeholder="name" ><br>
+    <input formControlName="lastName" placeholder="lastName"><br>
+    <input formControlName="idNumber" placeholder="Id Number"><br>
+    <input formControlName="email" placeholder="email"><br>
+    <input formControlName="phoneNumber" placeholder="contact"><br>
+    <input formControlName="password" placeholder="password"><br>
+    <button class="submit">Submit</button>
+  </form>
+  </div>
+
+
+
+
+
+
+</div>
+    <!-- <h6>Career Objective</h6>
+    <p>Software programmer with a proven ability to adapt in both self-starting and collaborative environment 
+        while staying focus onn schieving high-quality results under strict deadlines. This quality and result-based approach drove me to colaborate with VP of sales at Squarespace to 
+            create a digital marketing campaign that tripled average signups in a single month
+         -->
+    
+
+<!-- Star rating -->
+
+

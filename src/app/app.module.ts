@@ -13,6 +13,7 @@ import { ProductService } from './shared/product.service';
 import { ProfileComponent } from './profile/profile.component';
 import { CartComponent } from './cart/cart.component';
 import { TableModule } from 'primeng/table';
+import { PasswordModule } from 'primeng/password';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { TableModule } from 'primeng/table';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    TableModule
+    TableModule,
+    PasswordModule
   ],
   providers: [CustomerService, ProductService],
   bootstrap: [AppComponent],
